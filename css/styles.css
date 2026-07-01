@@ -1,5 +1,5 @@
 /* VoiceBox Design System — Bold, editorial, magazine-style */
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700;900&family=Sarabun:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Space+Mono&display=swap');
 
 :root {
     /* Brand Palette */
@@ -28,8 +28,8 @@
     --error: #EF4444;
 
     /* Typography */
-    --font-display: 'Archivo Black', Impact, 'Arial Black', sans-serif;
-    --font-body: 'Work Sans', -apple-system, 'Segoe UI', Helvetica, sans-serif;
+    --font-display: 'Kanit', 'Noto Sans Thai', Impact, 'Arial Black', sans-serif;
+    --font-body: 'Sarabun', 'Noto Sans Thai', -apple-system, 'Segoe UI', Helvetica, sans-serif;
     --font-mono: 'Space Mono', 'Courier New', Consolas, monospace;
 
     /* Spacing */
@@ -51,7 +51,7 @@
 
 body {
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.7;
     color: var(--text-primary);
@@ -91,7 +91,7 @@ header .overline {
 header h1 {
     font-family: var(--font-display);
     font-size: 38px;
-    font-weight: 400;
+    font-weight: 900;
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: var(--space-sm);
@@ -175,7 +175,7 @@ main {
 h2 {
     font-family: var(--font-display);
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.01em;
     color: var(--text-primary);
@@ -192,7 +192,7 @@ h2 {
 label {
     display: block;
     font-family: var(--font-body);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -210,7 +210,7 @@ select {
     border-radius: 0;
     padding: 8px 14px;
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: var(--text-primary);
     transition: border-color 0.15s ease;
@@ -264,7 +264,7 @@ select {
     font-weight: 400;
     text-transform: none;
     letter-spacing: normal;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     padding: var(--space-sm) var(--space-md);
     border: 2px solid var(--border-subtle);
@@ -339,7 +339,7 @@ input[type="checkbox"]:focus {
 /* === BUTTONS === */
 button {
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -435,7 +435,7 @@ button:disabled {
 
 .progress-text {
     font-family: var(--font-mono);
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
     color: var(--text-primary);
     margin-top: var(--space-sm);
@@ -454,7 +454,7 @@ button:disabled {
     padding: var(--space-md) var(--space-lg);
     text-align: center;
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-secondary);
 }
 
@@ -583,7 +583,7 @@ footer .developer strong {
 }
 
 .estimate-label {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -591,13 +591,13 @@ footer .developer strong {
 
 .estimate-value {
     font-family: var(--font-mono);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
 }
 
 /* === ERROR TEXT === */
 .error-text {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--error);
     padding: var(--space-sm) var(--space-md);
@@ -612,7 +612,7 @@ footer .developer strong {
 
 .preview-text {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.6;
     max-height: 240px;
     overflow-y: auto;
@@ -625,14 +625,14 @@ footer .developer strong {
 
 /* === HELPER TEXT === */
 .helper-text {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--text-tertiary);
     margin-top: 4px;
 }
 
 /* === SIZE WARNING === */
 .size-warning {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--warning);
     padding: var(--space-sm) var(--space-md);
@@ -644,13 +644,13 @@ footer .developer strong {
 /* === FILE INPUT === */
 input[type="file"] {
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 16px;
     padding: var(--space-sm) 0;
 }
 
 input[type="file"]::file-selector-button {
     font-family: var(--font-body);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
