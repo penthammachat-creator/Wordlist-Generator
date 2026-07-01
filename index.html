@@ -25,7 +25,8 @@
                 
                 <!-- STEP 1: Configure -->
                 <div class="step-content" id="step1">
-                    <h2>ตั้งค่าเงื่อนไข</h2>
+                    <form id="configForm">
+                        <h2>ตั้งค่าเงื่อนไข</h2>
 
                     <!-- Charset Section -->
                     <div class="section-label">ช่วงความยาว</div>
@@ -154,7 +155,12 @@
                         <div class="error-text" id="errorText"></div>
                     </div>
 
-                    <button type="button" class="next-btn" onclick="validateAndNext()">ถัดไป</button>
+                    </form>
+
+                    <div class="button-group">
+                        <button type="button" class="restart-btn" onclick="resetConfig()">ล้างค่าทั้งหมด</button>
+                        <button type="button" class="next-btn" onclick="validateAndNext()">ถัดไป</button>
+                    </div>
                 </div>
                 
                 <!-- STEP 2: Generate -->

@@ -247,6 +247,24 @@ function nextStep(step) {
     }
 }
 
+// --- Reset Config ---
+function resetConfig() {
+    // Reset all form fields
+    document.getElementById('configForm').reset();
+
+    // Clear imported words
+    importedWords = [];
+    document.getElementById('importStatus').textContent = '';
+    document.getElementById('importFile').value = '';
+
+    // Update UI
+    updateCharsetPreview();
+    updateEstimate();
+
+    // Hide validation error
+    document.getElementById('validationError').classList.add('hidden');
+}
+
 function restart() {
     // Terminate worker if running
     if (worker) {
