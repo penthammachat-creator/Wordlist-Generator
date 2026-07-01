@@ -249,8 +249,29 @@ function nextStep(step) {
 
 // --- Reset Config ---
 function resetConfig() {
-    // Reset all form fields
-    document.getElementById('configForm').reset();
+    // Reset text/number inputs
+    document.getElementById('minLength').value = '1';
+    document.getElementById('maxLength').value = '8';
+    document.getElementById('customWords').value = '';
+    document.getElementById('thaiWords').value = '';
+    document.getElementById('prefix').value = '';
+    document.getElementById('suffix').value = '';
+    document.getElementById('combineWords').value = '';
+    document.getElementById('yearStart').value = '2020';
+    document.getElementById('yearEnd').value = '2026';
+
+    // Reset selects
+    document.getElementById('numberSuffix').value = 'none';
+    document.getElementById('combineSeparator').value = '';
+
+    // Reset checkboxes
+    document.getElementById('upperCase').checked = true;
+    document.getElementById('lowerCase').checked = true;
+    document.getElementById('numbers').checked = true;
+    document.getElementById('specialChars').checked = false;
+    document.getElementById('leetspeak').checked = false;
+    document.getElementById('appendYear').checked = false;
+    document.getElementById('includeCommon').checked = false;
 
     // Clear imported words
     importedWords = [];
