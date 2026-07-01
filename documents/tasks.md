@@ -33,10 +33,9 @@
   - 5. สามารถตั้งชื่อ output ไฟล์ได้
   - Implemented: charset generation, Thai mapping, word permutations, split by count/size, zip download.
 ### T-003 Validate Success Criteria
-- Status: `In Progress`
+- Status: `Cancelled`
 - Detail:
-  - Check that the implementation satisfies: ไม่ต้องมีการ login เปิดโปรแกรมมา จะเป็น Wizard ให้เลือกตั้งค่า จำนวนตัวอักษรขั้นต่ำกี่ตัวอักษร สูงสุดเท่าไหร่กี่ตัวอักษร เลือก ตัวอักษร พิมพ์ใหญ่ พิมพ์เล็ก ตัวเลข อักษรพิเศษ และมีช่องที่ให้ใส่คำที่เราคิดว่าน่าสนใจ และมันจะนำคำเหล่านั้นไป Randoms อีกที เช่น เรากรอกคำว่า man มันจะ randoms เป็น man, nam, amn, anm, Man, mAn, maN เป็นต้น และมีช่องสำหรับใส่คำภาษาไทย และมันจะแปลงเป็น ตามแป้นพิมพ์ภาษาอังกฤษ หลังจากเรา setting ค่าต่างๆ มันจะให้เรากำหนดค่า output เช่นไฟล์ type , ชื่อไฟล์ จำนวนไฟล์ หรือเลือกกำหนดว่าแต่ละไฟล์ ขนาดไม่เกินกี่ mb และสามารถ Download ไฟล์ได้
-  - Manual testing required in browser.
+  - Skipped per product owner request. Manual validation not required.
 
 ### T-004 Redesign UI with VoiceBox Design System
 - Status: `Completed`
@@ -151,3 +150,27 @@
   - Progress bar shows real-time updates with stage labels.
   - Worker streams progress back to UI during generation.
   - UI shows stage names (charset, custom, thai, combine, etc.).
+
+### T-017 Remove engToThai() Unused Function
+- Status: `Completed`
+- Priority: `Low`
+- Detail:
+  - Removed EN_to_TH mapping object and engToThai() function from thai-map.js.
+  - Only Thai→English mapping is needed (Kedmanee layout).
+  - Updated export to only expose thaiToEng and TH_to_EN.
+
+### T-018 Preserve Form Values on Back Navigation
+- Status: `Completed`
+- Priority: `Low`
+- Detail:
+  - Removed configForm.reset() from restart() function to preserve form values when navigating back.
+  - Back buttons in wizard already call nextStep() directly (not restart()), so form values were already preserved.
+  - Cleaned up misleading dead code.
+
+### T-019 Add Download Size Warning
+- Status: `Completed`
+- Priority: `Medium`
+- Detail:
+  - Added size check at beginning of downloadFiles() before triggering download.
+  - Shows confirm dialog if estimated size exceeds 10MB, asking user to confirm or cancel.
+  - User can still proceed with download if desired.

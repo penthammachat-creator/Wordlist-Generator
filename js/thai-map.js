@@ -8,11 +8,9 @@ const pairs = [
     ['ผ','z'], ['(','Z'], ['ป','x'], [')','X'], ['แ','c'], ['ฉ','C'], ['อ','v'], ['ฮ','V'], ['ิ','b'], ['ฺ','B'], ['ื','n'], ['์','N'], ['ท','m'], ['?','M'], ['ม',','], ['ฒ','<'], ['ใ','.'], ['ฬ','>'], ['ฝ','/'], ['ฦ','?']
 ];
 
-// Create mapping objects
+// Create mapping object (Thai → English only)
 const TH_to_EN = Object.fromEntries(pairs);
-const EN_to_TH = Object.fromEntries(pairs.map(([th,en]) => [en, th]));
 
-// Convert Thai text to English keyboard sequence
 function thaiToEng(text) {
     let result = '';
     for (const ch of text) {
@@ -21,16 +19,7 @@ function thaiToEng(text) {
     return result;
 }
 
-// Convert English text to Thai keyboard sequence
-function engToThai(text) {
-    let result = '';
-    for (const ch of text) {
-        result += (EN_to_TH[ch] !== undefined) ? EN_to_TH[ch] : ch;
-    }
-    return result;
-}
-
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { thaiToEng, engToThai, TH_to_EN, EN_to_TH };
+    module.exports = { thaiToEng, TH_to_EN };
 }

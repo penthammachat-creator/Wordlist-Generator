@@ -54,8 +54,13 @@
 - T-012 completed: Common password list + export formats.
 - T-013 completed: Import existing wordlist.
 - T-014 completed: Output size warning.
-- All tasks completed.
+- All original tasks completed or cancelled (T-003 skipped by product owner).
 - Bug fixes: common passwords + imported words now passed to worker.
 - Bug fixes: worker terminated on back navigation.
 - Bug fixes: import file cleared on restart.
 - Bug fixes: step 2 "ถัดไป" button disabled until generation complete.
+
+## Changes from Grilling Session (2026-07-01)
+- Removed engToThai() — only Thai→English mapping needed for Kedmanee layout.
+- Preserve form values on back navigation — removed configForm.reset() from restart().
+- Added confirm dialog warning on download if total size exceeds 10MB.

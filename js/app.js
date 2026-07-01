@@ -255,7 +255,6 @@ function restart() {
     }
 
     nextStep(1);
-    document.getElementById('configForm').reset();
     document.getElementById('progress').style.width = '0%';
     document.getElementById('progressText').textContent = 'กำลังเตรียม...';
     document.getElementById('wordCount').textContent = '0';
@@ -351,6 +350,14 @@ function downloadFiles() {
     if (generatedWords.length === 0) {
         alert('ยังไม่มีคำ กรุณาย้อนกลับไปสร้างคำก่อน');
         return;
+    }
+
+    // Warn if estimated size exceeds 10MB
+    const estimatedSize = generatedWords.reduce((sum, w) => sum + w.length + 1, 0);
+    if (estimatedSize > 10 * 1024 * 1024) {
+        if (!confirm(`ขนาดไฟล์โดยประมาณ ${formatFileSize(estimatedSize)} — เกิน 10MB แนะนำให้ Split ไฟล์ก่อนดาวน์โหลด\n\nต้องการดาวน์โหลดต่อหรือไม่?`)) {
+            return;
+        }
     }
 
     const content = formatForExport(generatedWords, exportFormat);
