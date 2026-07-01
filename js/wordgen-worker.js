@@ -141,7 +141,6 @@ function addBatch(words) {
 
 // --- Charset Generation (batched) ---
 function generateCharsetWords(minLength, maxLength, charset, updateProgress) {
-    const maxWords = 5000000;
     let count = 0;
     let totalEstimate = 0;
     for (let len = minLength; len <= maxLength; len++) {
@@ -153,22 +152,17 @@ function generateCharsetWords(minLength, maxLength, charset, updateProgress) {
 
     for (let length = minLength; length <= maxLength; length++) {
         const totalCombinations = Math.pow(charset.length, length);
-        const remainingCapacity = maxWords - count;
-        if (remainingCapacity <= 0) break;
-        const combinationsToGenerate = Math.min(totalCombinations, remainingCapacity);
 
         const indices = new Array(length).fill(0);
         const batch = [];
-        let localCount = 0;
 
-        while (localCount < combinationsToGenerate) {
+        while (true) {
             let word = '';
             for (let i = 0; i < length; i++) {
                 word += charset[indices[i]];
             }
             batch.push(word);
             count++;
-            localCount++;
             progressCount++;
 
             if (batch.length >= BATCH_SIZE) {

@@ -179,5 +179,7 @@
 - Status: `Completed`
 - Priority: `High`
 - Detail:
-  - Fixed worker charset generation: when total combinations exceed 5M cap, generate a truncated subset instead of skipping entirely.
-  - Updated app.js estimate to cap at 5M with "+" suffix when capped, so UI shows consistent count.
+  - Removed 5M word cap entirely — split feature handles large outputs.
+  - Worker generates all combinations without limit, using batched processing.
+  - Removed cap from estimate display in app.js.
+  - Updated manual.md to remove maxSize note.

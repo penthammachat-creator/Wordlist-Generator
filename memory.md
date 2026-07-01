@@ -64,3 +64,4 @@
 - Removed engToThai() — only Thai→English mapping needed for Kedmanee layout.
 - Preserve form values on back navigation — removed configForm.reset() from restart().
 - Added confirm dialog warning on download if total size exceeds 10MB.
+- Removed 5M word cap — split feature handles large outputs.

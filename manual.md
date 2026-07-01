@@ -340,7 +340,6 @@ Year: 2024-2026
 - **Deduplication:** คำซ้ำจะถูกตัดออกอัตโนมัติ ไม่ต้องกังวลเรื่องคำซ้ำ
 - **Web Worker:** การสร้างคำทำงานบน thread แยก ไม่ทำให้ browser ค้าง พร้อม progress bar real-time
 - **Custom Words:** คำที่ใส่จะถูกใช้ตรงๆ ไม่สลับตำแหน่ง ไม่สร้าง permutation
-- ** maxSize:** ระบบจำกัดการสร้าง charset permutation ไว้ที่ 5,000,000 คำต่อการสร้างหนึ่งครั้ง
 - **Size Warning:** ถ้าขนาด output เกิน 10MB จะแสดงคำเตือนให้ใช้ Split
 - **File Naming:** ไฟล์ที่แยกจะ auto-number ด้วย leading zeros (001, 002, 003)
 

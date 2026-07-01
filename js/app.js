@@ -168,14 +168,7 @@ function updateEstimate() {
     const suffix = document.getElementById('suffix').value.trim();
     if (prefix || suffix) count *= 2;
 
-    // Cap at 5M (matches worker limit)
-    const MAX_WORDS = 5000000;
-    const capped = count > MAX_WORDS;
-    if (capped) count = MAX_WORDS;
-
-    document.getElementById('estimateCount').textContent = capped
-        ? count.toLocaleString() + '+'
-        : count.toLocaleString();
+    document.getElementById('estimateCount').textContent = count.toLocaleString();
 
     // Size warning
     const estBytes = count * 9;
