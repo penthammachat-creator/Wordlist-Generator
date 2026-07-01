@@ -1,0 +1,40 @@
+{
+  "projectName": "Create Word for Dictionary Attack",
+  "projectType": "web-app",
+  "outputLanguage": "bilingual",
+  "promptPackLevel": "standard",
+  "documentsToGenerate": [
+    "prd.md",
+    "architecture.md",
+    "tasks.md"
+  ],
+  "coreFeatures": [
+    "1. สามารถสร้างคำ ตามเงื่อนไขได้ เช่น ต้องการกี่ตัวอักษร มีตัวเลขไหม มีออักขระพิเศษหรือเปล่า ตัวพิมพ์เล็ก ตัวพิมพ์ใหญ่",
+    "2. สร้างแปลงตัวหนังสือภาษาไทย โดยการพิมพ์แบบแป้นคียบอร์ดภาษาอังกฤษ เช่นคำว่า \"ธรรมชาติ\" จะเป็น \"Tii,=k9B\" เป็นต้น",
+    "3. สามารถตั้งค่า split ไฟล์ output ได้ตาม Config เช่น ต้องการ 3 ไฟล์ หรือ ต้องการไฟล์ละ 5 kb เป็นต้น",
+    "4. สามารถ Download output ออกมาเป็น .txt หรือ .zip (กรณี output มีหลายไฟล์)",
+    "5. สามารถตั้งชื่อ output ไฟล์ได้"
+  ],
+  "aiTargetContext": {
+    "targetProfile": {
+      "id": "generic-agent",
+      "label": "Generic Agent",
+      "workflowStyle": "Tool-agnostic, markdown-first, easy to adapt",
+      "handoffStyle": "สื่อสารชัดเป็นขั้นตอน ใช้ภาษาเรียบและลด assumption ที่ผูกกับ IDE ใด IDE หนึ่ง",
+      "promptBias": "เน้น context completeness, next-task execution และ memory updates แบบทั่วไป"
+    },
+    "provider": {
+      "id": "deterministic-fallback",
+      "label": "Standard Fallback",
+      "model": null,
+      "timeoutMs": null
+    }
+  },
+  "aiDocuments": [],
+  "aiQualityGate": null,
+  "aiAnalysis": null,
+  "providerDiagnosticsHistory": null,
+  "contextSync": null,
+  "teamTemplate": null,
+  "generatedAt": "2026-06-30T12:59:36.896Z"
+}

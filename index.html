@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Word for Dictionary Attack</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="overline">Pentesting Tool</span>
+            <h1>Wordlist Generator</h1>
+            <p>สร้างคำสำหรับ Bruteforce Password</p>
+        </header>
+        
+        <main>
+            <div class="wizard">
+                <div class="step-indicator">
+                    <div class="step active" data-step="1">1. ตั้งค่า</div>
+                    <div class="step" data-step="2">2. สร้างคำ</div>
+                    <div class="step" data-step="3">3. ดาวน์โหลด</div>
+                </div>
+                
+                <!-- STEP 1: Configure -->
+                <div class="step-content" id="step1">
+                    <h2>ตั้งค่าเงื่อนไข</h2>
+
+                    <!-- Charset Section -->
+                    <div class="section-label">ช่วงความยาว</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="minLength">ขั้นต่ำ</label>
+                            <input type="number" id="minLength" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="maxLength">สูงสุด</label>
+                            <input type="number" id="maxLength" min="1" value="8">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>ตัวอักษรที่ต้องการ</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" id="upperCase" checked> A-Z</label>
+                            <label><input type="checkbox" id="lowerCase" checked> a-z</label>
+                            <label><input type="checkbox" id="numbers" checked> 0-9</label>
+                            <label><input type="checkbox" id="specialChars"> !@#$</label>
+                        </div>
+                    </div>
+                    <div class="charset-preview" id="charsetPreview"></div>
+
+                    <!-- Custom Words Section -->
+                    <div class="section-label">คำกำหนดเอง</div>
+                    <div class="form-group">
+                        <label for="customWords">คำที่ต้องการ (ใช้ตรงๆ ไม่สลับตำแหน่ง)</label>
+                        <input type="text" id="customWords" placeholder="คั่นด้วย comma เช่น password, admin, letmein">
+                    </div>
+                    <div class="form-group">
+                        <label for="thaiWords">คำภาษาไทย</label>
+                        <input type="text" id="thaiWords" placeholder="คั่นด้วย comma เช่น ธรรมชาติ, สวัสดี">
+                    </div>
+
+                    <!-- Leetspeak -->
+                    <div class="section-label">Leetspeak</div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="leetspeak"> เปิดใช้ Leetspeak (a→@, e→3, i→1, o→0, s→5)
+                        </label>
+                    </div>
+
+                    <!-- Prefix / Suffix -->
+                    <div class="section-label">Prefix / Suffix</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prefix">Prefix (ต่อหน้า)</label>
+                            <input type="text" id="prefix" placeholder="เช่น admin">
+                        </div>
+                        <div class="form-group">
+                            <label for="suffix">Suffix (ต่อท้าย)</label>
+                            <input type="text" id="suffix" placeholder="เช่น 123">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="numberSuffix">ตัวเลขต่อท้าย</label>
+                        <select id="numberSuffix">
+                            <option value="none">ไม่ต่อ</option>
+                            <option value="0-9">0-9</option>
+                            <option value="00-99">00-99</option>
+                            <option value="000-999">000-999</option>
+                        </select>
+                    </div>
+
+                    <!-- Year Append -->
+                    <div class="section-label">Year / ปี</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="yearStart">จากปี</label>
+                            <input type="number" id="yearStart" min="2000" max="2030" value="2020">
+                        </div>
+                        <div class="form-group">
+                            <label for="yearEnd">ถึงปี</label>
+                            <input type="number" id="yearEnd" min="2000" max="2030" value="2026">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="appendYear"> ต่อปีท้ายคำ
+                        </label>
+                    </div>
+
+                    <!-- Combination Mashup -->
+                    <div class="section-label">Combine Words</div>
+                    <div class="form-group">
+                        <label for="combineWords">คำที่ต้องการ combine</label>
+                        <input type="text" id="combineWords" placeholder="คั่นด้วย comma เช่น admin, root, password">
+                    </div>
+                    <div class="form-group">
+                        <label for="combineSeparator">Separator</label>
+                        <select id="combineSeparator">
+                            <option value="">ไม่มี (man123)</option>
+                            <option value="-">Dash (man-123)</option>
+                            <option value="_">Underscore (man_123)</option>
+                            <option value=".">Dot (man.123)</option>
+                        </select>
+                    </div>
+
+                    <!-- Common Passwords -->
+                    <div class="section-label">Common Passwords</div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="includeCommon"> รวม Common Passwords (Top 500)
+                        </label>
+                    </div>
+
+                    <!-- Import Wordlist -->
+                    <div class="section-label">Import Wordlist</div>
+                    <div class="form-group">
+                        <label for="importFile">อัปโหลดไฟล์ .txt (คำต่อบรรทัด)</label>
+                        <input type="file" id="importFile" accept=".txt,.csv">
+                        <div class="helper-text" id="importStatus"></div>
+                    </div>
+
+                    <!-- Estimate -->
+                    <div class="estimate-box" id="estimateBox">
+                        <div class="estimate-label">ประมาณการ</div>
+                        <div class="estimate-value"><span id="estimateCount">0</span> คำ</div>
+                    </div>
+                    <div class="size-warning hidden" id="sizeWarning">
+                        ขนาดไฟล์โดยประมาณเกิน 10MB — แนะนำให้ใช้ Split ไฟล์
+                    </div>
+
+                    <div class="form-group hidden" id="validationError">
+                        <div class="error-text" id="errorText"></div>
+                    </div>
+
+                    <button type="button" class="next-btn" onclick="validateAndNext()">ถัดไป</button>
+                </div>
+                
+                <!-- STEP 2: Generate -->
+                <div class="step-content hidden" id="step2">
+                    <h2>สร้างคำ</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress" id="progress"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">กำลังเตรียม...</div>
+                    </div>
+                    <div class="stats">
+                        <div>จำนวนคำที่สร้าง <span id="wordCount">0</span></div>
+                        <div>ขนาดไฟล์โดยประมาณ <span id="fileSize">0 KB</span></div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="restart-btn" onclick="nextStep(1)">ย้อนกลับ</button>
+                        <button type="button" class="next-btn" id="step2NextBtn" onclick="nextStep(3)" disabled>ถัดไป</button>
+                    </div>
+                </div>
+                
+                <!-- STEP 3: Download -->
+                <div class="step-content hidden" id="step3">
+                    <h2>ดาวน์โหลด</h2>
+                    <div class="stats">
+                        <div>จำนวนคำทั้งหมด <span id="finalWordCount">0</span></div>
+                        <div>ขนาดไฟล์ <span id="finalFileSize">0 KB</span></div>
+                    </div>
+                    <div class="size-warning hidden" id="sizeWarningStep3">
+                        ขนาดไฟล์เกิน 10MB — แนะนำให้ Split ไฟล์ก่อนดาวน์โหลด
+                    </div>
+                    <div class="preview-container" id="previewContainer">
+                        <div class="section-label">ตัวอย่างคำ (50 แรก / 50 สุดท้าย)</div>
+                        <pre class="preview-text" id="previewText"></pre>
+                    </div>
+                    <div class="download-options">
+                        <div class="form-group">
+                            <label for="fileName">ชื่อไฟล์</label>
+                            <input type="text" id="fileName" value="wordlist">
+                        </div>
+                        <div class="form-group">
+                            <label for="exportFormat">Export Format</label>
+                            <select id="exportFormat">
+                                <option value="plain">Plain Text (.txt)</option>
+                                <option value="hashcat">Hashcat Mask Format</option>
+                                <option value="john">John the Ripper Format</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="splitOption">แยกไฟล์</label>
+                            <select id="splitOption">
+                                <option value="none">ไม่แยก</option>
+                                <option value="count">แยกตามจำนวนไฟล์</option>
+                                <option value="size">แยกตามขนาดไฟล์</option>
+                            </select>
+                        </div>
+                        <div class="form-group hidden" id="splitCountGroup">
+                            <label for="splitCount">จำนวนไฟล์</label>
+                            <input type="number" id="splitCount" min="2" value="2">
+                        </div>
+                        <div class="form-group hidden" id="splitSizeGroup">
+                            <label for="splitSize">ขนาดไฟล์สูงสุด (MB)</label>
+                            <input type="number" id="splitSize" min="0.1" step="0.1" value="5">
+                        </div>
+                        <div class="form-group" id="zipGroup">
+                            <label>
+                                <input type="checkbox" id="zipDownload" checked> ดาวน์โหลดเป็น .zip (ถ้ามีหลายไฟล์)
+                            </label>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="restart-btn" onclick="nextStep(2)">ย้อนกลับ</button>
+                            <button type="button" class="download-btn" onclick="downloadFiles()">ดาวน์โหลด</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>สำหรับ Pentester เท่านั้น ใช้อย่างรับผิดชอบ</p>
+            <p class="developer">Developed by <strong>penthammachat</strong></p>
+        </footer>
+    </div>
+    
+    <script src="js/thai-map.js"></script>
+    <script src="js/common-passwords.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
