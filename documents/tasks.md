@@ -174,3 +174,10 @@
   - Added size check at beginning of downloadFiles() before triggering download.
   - Shows confirm dialog if estimated size exceeds 10MB, asking user to confirm or cancel.
   - User can still proceed with download if desired.
+
+### T-020 Fix Charset Generation Truncation Bug
+- Status: `Completed`
+- Priority: `High`
+- Detail:
+  - Fixed worker charset generation: when total combinations exceed 5M cap, generate a truncated subset instead of skipping entirely.
+  - Updated app.js estimate to cap at 5M with "+" suffix when capped, so UI shows consistent count.

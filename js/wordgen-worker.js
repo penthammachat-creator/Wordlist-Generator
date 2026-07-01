@@ -153,18 +153,22 @@ function generateCharsetWords(minLength, maxLength, charset, updateProgress) {
 
     for (let length = minLength; length <= maxLength; length++) {
         const totalCombinations = Math.pow(charset.length, length);
-        if (count + totalCombinations > maxWords) break;
+        const remainingCapacity = maxWords - count;
+        if (remainingCapacity <= 0) break;
+        const combinationsToGenerate = Math.min(totalCombinations, remainingCapacity);
 
         const indices = new Array(length).fill(0);
         const batch = [];
+        let localCount = 0;
 
-        while (true) {
+        while (localCount < combinationsToGenerate) {
             let word = '';
             for (let i = 0; i < length; i++) {
                 word += charset[indices[i]];
             }
             batch.push(word);
             count++;
+            localCount++;
             progressCount++;
 
             if (batch.length >= BATCH_SIZE) {
